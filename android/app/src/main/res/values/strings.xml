@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">mknz_reporter</string>
+    <string name="facebook_app_id">224856646466727</string>
+    <string name="fb_login_protocol_scheme">fb224856646466727</string>
+    <string name="facebook_client_token">8e5fb9af11658ddb27379d35df36141c</string>
+</resources>
