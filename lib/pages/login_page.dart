@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:mknz_reporter/pages/home_page.dart';
+import 'package:mknz_reporter/pages/tab_select.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
@@ -17,14 +18,16 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text('Facebook (Logged ' +
-              (_userData == null ? 'Out' : 'In') +
-              'Out)')),
+          title: const Text(
+            "MKNŽ Reporter"
+          )
+      ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-                child: Text('Log In'),
+                child: Text('Facebook Login'),
                 onPressed: () async {
                   final result = await FacebookAuth.i
                       .login(permissions: ["public_profile", "email"]);
@@ -33,9 +36,8 @@ class _LoginPageState extends State<LoginPage> {
                     final accessToken = result.accessToken?.token;
                     SharedPreferences prefs = await SharedPreferences.getInstance();
                     await prefs.setString("accessToken", accessToken!);
-                    final userData = await FacebookAuth.i.getUserData(
-                      fields: "email,name",
-                    ).then((value) => Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage())));
+                    await FacebookAuth.i.getUserData(
+                    ).then((value) => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const TabSelect())));
                   }
                 }),
           ],

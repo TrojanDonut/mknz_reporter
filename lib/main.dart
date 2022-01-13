@@ -16,9 +16,11 @@ class _FacebookAppState extends State<FacebookApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+      theme: ThemeData.dark(
+
       ),
+      darkTheme: ThemeData.dark(),
+      themeMode: ThemeMode.dark,
       home: const LoginPage(),
     );
   }
